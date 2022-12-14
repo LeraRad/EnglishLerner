@@ -1,0 +1,9 @@
+<h2>Your Words</h2>
+
+<%= link_to "Create new Item", new_word_path %>
+<% @word.each do |word| %>
+  <p><%= link_to word.word, word_show_path(word)%></p>
+  <p><%= word.translation%></p>
+  <%= link_to "Edit", edit_word_path(word) %>
+  <%= link_to "Delete", word_show_path(word), data: { turbo_method: :delete, turbo_confirm: "Are you sure, that you want to delete this Word?"}  %>
+<% end %>
