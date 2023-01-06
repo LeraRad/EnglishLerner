@@ -8,50 +8,16 @@ class WordsController < ApplicationController
   end
 
   def create
-      @word = Word.new(params.require(:word).permit(:title,:subtitle,:body))
+      @word = Word.new(params.require(:eng_word).permit(:eng_word,:transcription,:translation))
 
       respond_to do |format|
         if @word.save
-          format.html { redirect_to words_path, notice: "New Word was successfully created." }
+          format.html { redirect_to words_path, notice: "New Word was successfully added." }
           format.json { render :show, status: :created, location: @word }
         else
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @word.errors, status: :unprocessable_entity }
         end
       end
-  end
-
-  def edit
-    @word = Word.find(params[:id])
-  end
-
-  def update
-      @word = Word.find(params[:id])
-      respond_to do |format|
-        if @word.update(params.require(:word).permit(:title,:subtitle,:body))
-          format.html { redirect_to words_path, notice: "The record was successfully updated." }
-          format.json { render :show, status: :ok, location: @word }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @word.errors, status: :unprocessable_entity }
-        end
-      end
-  end
-
-  def show
-    @word = Word.find(params[:id])
-  end
-
-  def destroy
-    # Perform the lookup
-    @word = Word.find(params[:id])
-
-    #Destroy/delete the record
-    @word.destroy
-
-    #Redirect
-    respond_to do |format|
-      format.html { redirect_to words_url, notice: "Word was removed." }
-    end
   end
 end
