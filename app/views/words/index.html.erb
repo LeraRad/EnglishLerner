@@ -1,9 +1,13 @@
 <h1>Words</h1>
 
+<%= link_to "Add a new word", new_word_url %>
+
 <% @word.each do |word| %>
 <hr>
 <p><%= word.eng_word %>                               <%= word.transcription %>                          <%= word.translation %></p>
 <!-- <p><%= word.transcription %></p>
 <p><%= word.translation %></p> -->
+
+<%= link_to "Edit", edit_word_path(word.id) %>
 
 <% end %>
