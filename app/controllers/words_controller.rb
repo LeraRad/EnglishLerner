@@ -42,5 +42,18 @@ def show
   @word = Word.find(params[:id])
 end
 
+def destroy
+  # Perform the lookup
+  @word = Word.find(params[:id])
+
+  #Destroy/delete the record
+  @word.destroy
+
+  #Redirect
+  respond_to do |format|
+    format.html { redirect_to words_url, notice: "The word #{@word.eng_word} was removed." }
+  end
+end
+
 
 end
