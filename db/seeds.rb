@@ -7,3 +7,11 @@
 end
 
 puts "20 words created"
+
+5.times do |list|
+  List.create!(
+    title: "Title #{list}",
+    subtitle: "Subtitle",
+    word: "Word"
+    )
+end

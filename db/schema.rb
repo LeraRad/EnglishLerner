@@ -10,21 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_06_153107) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_10_075550) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "folders", force: :cascade do |t|
     t.string "title"
-    t.string "list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "lists", force: :cascade do |t|
     t.string "title"
-    t.string "word"
-    t.text "subtitle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,6 +40,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_153107) do
     t.string "transcription"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "list_id"
+    t.index ["list_id"], name: "index_words_on_list_id"
   end
 
+  add_foreign_key "words", "lists"
 end
